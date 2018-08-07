@@ -1,0 +1,15 @@
+<section class="input-output-properties">
+        <h3>INPUT/OUTPUT PORPERTIES</h3>
+    <article>
+        <h4>INPUT</h4>
+        <app-curso [nome]="nomeDoCurso"></app-curso>
+        
+    </article>
+    <article>
+        <h4>OUTPUT</h4>
+        <app-contador valor="10" (mudouValor)="onMudouValor($event)"></app-contador>
+    </article>
+</section>
+
+
+<app-form></app-form>
