@@ -1,0 +1,19 @@
+<h5>
+  Style class
+</h5>
+
+<button 
+  [ngStyle]="{
+    'backgroundColor': ativo ? 'blue' : 'gray',
+    'color': ativo ? 'white' : 'black',
+    'fontWeight': ativo ? 'blue' : 'normal',
+    'fontSize': tamanhoFonte + 'px'
+  }"
+
+  (click) = "mudarAtivo()"
+>
+  Mudar atributo
+</button>
+
+<br>
+<input type="text" [(ngModel)]="tamanhoFonte">

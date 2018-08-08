@@ -1,0 +1,22 @@
+<h5>*ngIf</h5>
+
+<div *ngIf="mostrar">
+  Monstrando 1
+</div>
+
+<div *ngIf="!mostrar">
+  Monstrando 2
+</div>
+
+<h5>Hidden</h5>
+
+<div [hidden]="!mostrar">
+  Monstrando 1
+</div>
+
+<div [hidden]="mostrar">
+  Monstrando 2
+</div>
+
+<button (click)="onMostrar()">Mostrar</button>
+
