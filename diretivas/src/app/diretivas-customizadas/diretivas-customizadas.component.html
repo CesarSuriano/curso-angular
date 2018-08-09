@@ -9,3 +9,16 @@
 <p [default]="'blue'" [highlight]="'red'">
   Texto com highlight quando passo o mouse com cores custom
 </p>
+
+
+<h5>Mudando</h5>
+<div *ngIf="mostrar">
+  Monstrando 1
+</div>
+
+<div *ngElse="mostrar">
+  Monstrando 2
+</div>
+
+
+<button (click)="onMostrar()">Mostrar</button>
