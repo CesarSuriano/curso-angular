@@ -13,6 +13,8 @@ export class AlunoFormComponent implements OnInit {
   aluno: any;
   inscricao: Subscription
 
+  private mudou: boolean = false
+
   constructor(
     private route: ActivatedRoute,
     private alunosService: AlunosService
@@ -29,6 +31,19 @@ export class AlunoFormComponent implements OnInit {
         }
       }
     )
+  }
+
+  alterouForm() {
+    if(this.mudou) {
+      if(confirm("Deseja sair do form? ")){
+        return true
+      }
+    }
+    return false
+  }
+
+  onInput() {
+    this.mudou = true
   }
 
   ngOnDestroy(): void {

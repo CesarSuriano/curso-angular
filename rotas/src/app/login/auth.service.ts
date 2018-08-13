@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Usuario } from './usuario';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   mostrarMenuEmitter = new EventEmitter<boolean>()
 
