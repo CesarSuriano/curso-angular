@@ -2,13 +2,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AlunosService } from '../alunos.service';
+import { IFormCandactivate } from '../../guards/iform-candactivate';
 
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
   styleUrls: ['./aluno-form.component.css']
 })
-export class AlunoFormComponent implements OnInit {
+export class AlunoFormComponent implements OnInit, IFormCandactivate {
 
   aluno: any;
   inscricao: Subscription
@@ -33,7 +34,7 @@ export class AlunoFormComponent implements OnInit {
     )
   }
 
-  alterouForm() {
+  podeDesativar() {
     if(this.mudou) {
       if(confirm("Deseja sair do form? ")){
         return true
