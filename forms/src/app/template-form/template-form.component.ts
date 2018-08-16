@@ -22,6 +22,13 @@ export class TemplateFormComponent implements OnInit {
   onSubmit(form) {
     console.log(form)
 
+    this.http.post('endereco/post', JSON.stringify(form.value))
+      .pipe(map(res => res))
+      .subscribe(dados => console.log(dados))
+
+      form.form.reset()
+    
+
   }
 
   verificaValidTouched(campo) {
@@ -35,12 +42,39 @@ export class TemplateFormComponent implements OnInit {
     };
   }
 
-  consultaCEP(cep) {
-    this.http.get(" viacep.com.br/ws/" + cep + "/json/")
-      .pipe(map(dados => dados)
-      .subscribe(dados => console.log(dados))
+  consultaCEP(cep, form) {
+    const URL = "https://viacep.com.br/ws/" + cep + "/json/"
 
-      //ta dando erro aqui
+    this.http.get(URL)
+      .pipe(map(res => res.json()))
+      .subscribe(dados => this.populaDadosForm(dados, form))
+  }
+
+  populaDadosForm(dados, form) {
+    // form.setValue({
+    //   nome: form.value.nome,
+    //   email: form.value.email,
+    //   endereco: {
+    //     rua: dados.logradouro,
+    //     cep: dados.cep.replace('-', ''),
+    //     numero: '',
+    //     complemento: dados.complemento,
+    //     bairro: dados.bairro,
+    //     cidade: dados.localidade,
+    //     estado: dados.uf
+    //   }
+    // })
+
+    form.form.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        numero: '',
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    })
   }
 
 
