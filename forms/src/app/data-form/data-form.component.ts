@@ -15,7 +15,12 @@ import { Observable } from 'rxjs';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup
-  estados: Observable<EstadosBr[]>
+  estados: any
+  cargos: any[]
+  tecnologias: any
+  newsletterOp: any[]
+  frameworks = ['Angular', 'React', 'Vue', 'Ionic']
+  
 
 
   constructor(
@@ -37,10 +42,20 @@ export class DataFormComponent implements OnInit {
         bairro: [],
         cidade: [],
         estado: [],
-      })
+      }),
+      cargo: [null],
+      tecnologia:[null],
+      newsletter: ['s'],
+      termos: [null, Validators.pattern("true")],
+      frameworks: [null]
     })
 
     this.estados = this.dropdownService.getEstadosBr()
+
+    this.cargos = this.dropdownService.getCargos()
+    this.tecnologias = this.dropdownService.getTecnologias()
+    this.newsletterOp = this.dropdownService.getNewsletter()
+
 
     // this.dropdownService.getEstadosBr()
     //   .subscribe((dados: EstadosBr[]) => {
@@ -126,6 +141,24 @@ export class DataFormComponent implements OnInit {
 
   resetar() {
     this.formulario.reset()
+  }
+
+  setarCargo() {
+    const cargo = { nome: 'Dev', nivel: 'pleno', desc: 'Dev pl' }
+    this.formulario.get('cargo').setValue(cargo)
+  }
+
+  onDestroy() {
+    console.log("destruiu: ")
+    console.log(this.estados)
+  }
+
+  compararCargos(obj1, obj2) {
+    return obj1 && obj2 ? (obj1.nivel === obj2.nivel) : obj1 === obj2
+  }
+
+  setarTecnologias(obj1, obj2) {
+    this.formulario.get('tecnologia').setValue(['java', 'javascript', 'php'])
   }
 
 }
